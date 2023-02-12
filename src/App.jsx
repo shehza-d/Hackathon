@@ -1,15 +1,25 @@
 import "./App.css";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+// Splash screen
+import Welcome from "./pages/authPages/Welcome";
+// AuthPage
+import Login from "./pages/authPages/Login";
+import Signup from "./pages/authPages/Signup";
+// Store Pages
+import AllProducts from "./pages/storePages/AllProducts";
+// import Courses from "./ ";
+// import Courses from "./ ";
+// Admin Pages
+// import Courses from "./ ";
+// import Courses from "./ ";
+// import Courses from "./ ";
+// import Courses from "./ ";
 
-// import Login from "./components/Login";
-// import Signup from "./components/Signup";
-import Home from "./components/home/index";
-// import Courses from "./components/courses/index";
 // import { auth } from "./firebase";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
  
-export default function App(props) {
+export default function App() {
 
   const [isLogin, setIsLogin] = useState(true);
 
@@ -28,7 +38,11 @@ export default function App(props) {
     <div className="App">
       {isLogin ? (
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          {/* user store pages */}
+          <Route path="/products" element={<AllProducts />} />
 
           {/* <Route path="attendance" element={<Attendance />} />
           <Route path="courses" element={<Courses />} />

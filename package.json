@@ -1,29 +1,51 @@
 {
-  "name": "hackathon-2",
-  "version": "1.0.0",
-  "description": "my work",
-  "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.mjs",
-    "dev": "nodemon server.mjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shehza-d/HACKATHON-1.git"
-  },
-  "author": "shehzad",
-  "license": "ISC",
-  "homepage": "https://github.com/shehza-d/HACKATHON-1#readme",
+  "name": "myapp",
+  "description": "Saylani Online Discount Store",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "firebase-admin": "^11.3.0",
-    "mongoose": "^6.7.5",
-    "multer": "^1.4.5-lts.1"
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.8",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.2.0",
+    "firebase": "^9.14.0",
+    "formik": "^2.2.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
+    "styled-components": "^5.3.6",
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

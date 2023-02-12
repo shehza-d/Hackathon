@@ -12,6 +12,8 @@
 /node_modules
 node_modules
 /WEB/node_modules
+/server/node_modules
+server/node_modules
 WEB/node_modules
 
 /.pnp

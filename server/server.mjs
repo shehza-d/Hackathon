@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import fs from "fs";
 import admin from "firebase-admin";
 
-
 const app = express();
 const port = process.env.PORT || 3003;
 //middleware configuration
@@ -13,7 +12,7 @@ app.use(express.json());
 app.use(cors()); //{origin: ['http://localhost:3000', 'https://ecom-25516.web.app', "*"]},
 
 // https://firebase.google.com/docs/storage/admin/start
-const serviceAccount ={
+const serviceAccount = {
   type: "service_account",
   project_id: "e-commerce-shehzad",
   private_key_id: "acd1fac7c0b01bb7dd4194ef07d4508558106223",
@@ -61,9 +60,9 @@ const productModel = mongoose.model(
     createdDate: { type: Date, default: Date.now },
   })
 );
-// To remove 
+// To remove
 //app.get("/", (req: express.Request, res: express.Response): void => {
- // res.send(`Server for Shehzad e-commerce App!`);
+// res.send(`Server for Shehzad e-commerce App!`);
 //});
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ this is for courses $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //to see all product list from database
@@ -84,10 +83,10 @@ app.get("/products", (req, res) => {
 
 //to add new product in Database
 // app.post("/product", upload.any(), async (req, res) => {
-  app.post("/product",  async (req, res) => {
+app.post("/product", async (req, res) => {
   const body = req.body;
   console.log("body: ", body);
- 
+
   // console.log("file: ", req.files[0]);
 
   // if (!body.name || !body.email || !body.password) {
@@ -195,7 +194,7 @@ app.get("/products", (req, res) => {
   await productModel.create(
     {
       productName: "body.productName",
-      productDescription: "body.productDescription",
+      // productDescription: "body.productDescription",
       productPrice: "body.productPrice",
     },
     (err, saved) => {
@@ -261,8 +260,8 @@ app.delete("/courses", (req, res) => {
 // });
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ this is for Students $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-// const __dirname = path.resolve(); 
-//  app.use("/", express.static(path.join(__dirname, "./WEB/build"))); 
+// const __dirname = path.resolve();
+//  app.use("/", express.static(path.join(__dirname, "./WEB/build")));
 //  app.use("*", express.static(path.join(__dirname, "./WEB/build")));
 
 app.listen(port, () => {
@@ -276,8 +275,8 @@ const DB_NAME = "Hackathon2023";
 //MongoDB
 const dbURI =
   process.env.MongoDBURI ||
-  "mongodb+srv://Backend:Backend@backend.xfgg8bk.mongodb.net/backend?retryWrites=true&w=majority"
-  // "mongodb+srv://shehzad:LMLMLM@cluster0.wclhhvn.mongodb.net/?retryWrites=true&w=majority"
+  "mongodb+srv://Backend:Backend@backend.xfgg8bk.mongodb.net/backend?retryWrites=true&w=majority";
+// "mongodb+srv://shehzad:LMLMLM@cluster0.wclhhvn.mongodb.net/?retryWrites=true&w=majority"
 // `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.wclhhvn.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
 await mongoose.connect(dbURI);

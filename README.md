@@ -1,1 +1,3 @@
-# MY GREAT APP
+# SMIT HACKATHON 2023
+
+## Store app

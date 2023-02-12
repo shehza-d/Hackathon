@@ -7,9 +7,10 @@ import Button from "@mui/material/Button";
 // Firebase
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { collection, addDoc } from 'firebase/firestore'
-
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+
 // import { Link } from "react-router-dom";
 
 import { useFormik } from "formik";
@@ -31,12 +32,17 @@ export default function Signup() {
     resetForm,
   } = useFormik({
     initialValues: {
-		fullName:'',
-		contactNumber:'',
+      fullName: "",
+      contactNumber: "",
       email: "",
       password: "",
     },
     validationSchema: yup.object({
+      name: yup
+        .string("Enter your name")
+        .required("Name is required")
+        .min(3, "Please enter more then 3 characters ")
+        .max(20, "Please enter within 20 characters "),
       email: yup
         .string("Enter your email")
         .email("Enter valid email")
@@ -48,18 +54,33 @@ export default function Signup() {
         .required("Password is required")
         .min(6, "Please enter more then 6 characters ")
         .max(64, "Please enter within 64 characters "),
+      contactNumber: yup
+        .number("Enter your Phone Number")
+        .required("Phone Number is required")
+    //     .min(10, "Please enter more then 10 characters ")
+    //     .max(15, "Please enter within 15 characters "),
     }),
     onSubmit: async (values) => {
+		console.log("values",values)
       try {
-        const userCredential = await signInWithEmailAndPassword(
+        const userCredential = await createUserWithEmailAndPassword(
           auth,
           values.email,
           values.password
         );
         // Signed in
-        toast(`Logged in successfully!`);
+        toast(`Account created successfully!`);
         console.log(userCredential);
         resetForm();
+
+        await addDoc(collection(db, "users"), {
+          fullName: values.fullName,
+          email: values.email,
+          contactNumber: values.contactNumber,
+          password: values.password,
+          cart: [],
+          uid: userCredential.user.uid,
+        });
         navigate("/products");
       } catch (err) {
         console.log(err.message);
@@ -71,9 +92,10 @@ export default function Signup() {
           err.message == "Firebase:Error (auth/email-already-in-use)."
         ) {
           toast(`User already exists`);
+        } else {
+          toast(`Wrong Email or Password`);
         }
       }
-      // toast(`Wrong Email or Password`);
     },
   });
   return (
@@ -90,7 +112,7 @@ export default function Signup() {
       //   width: 400px;
       // }}}
       >
-     <h1
+        <h1
           style={{
             display: "block",
             fontFamily: "Outfit",
@@ -111,8 +133,30 @@ export default function Signup() {
             sx={{
               color: "#61B846",
               //   backgroundColor: "#EFEFEF",
-              marginBottom: "32px",
-              marginTop: "52px",
+            //   marginBottom: "32px",
+            //   marginTop: "52px",
+              width: { xs: "320px", md: "420px" },
+            }}
+            autoComplete="on"
+            name="fullName"
+            margin="dense"
+            variant="outlined"
+            type="text"
+            // placeholder="Enter your email"
+            id="fullName"
+            label="Full Number"
+            value={values.fullName}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            error={touched.fullName && Boolean(errors.fullName)}
+            helperText={touched.fullName && errors.fullName}
+          />
+          <TextField
+            sx={{
+              color: "#61B846",
+              //   backgroundColor: "#EFEFEF",
+            //   marginBottom: "32px",
+            //   marginTop: "52px",
               width: { xs: "320px", md: "420px" },
             }}
             autoComplete="on"
@@ -148,6 +192,26 @@ export default function Signup() {
             error={touched.password && Boolean(errors.password)}
             helperText={touched.password && errors.password}
           />
+          <TextField
+            sx={{
+              backgroundColor: "transparent",
+              width: { xs: "320px", md: "420px" },
+            }}
+            autoComplete="on"
+            name="contactNumber"
+            margin="dense"
+            variant="filled"
+            type="tel"
+            // placeholder="Enter your Number"
+            id="contactNumber"
+            label="Contact Number"
+            value={values.contactNumber}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            error={touched.contactNumber && Boolean(errors.contactNumber)}
+            helperText={touched.contactNumber && errors.contactNumber}
+          />
+
           <Button
             type="submit"
             className="submitBtn"
@@ -166,8 +230,7 @@ export default function Signup() {
 			</Button> */}
         </form>
         <div style={{ textAlign: "center" }}>
-          <span>
-		  Already have an account?</span>
+          <span>Already have an account?</span>
           <button
             style={{
               paddingLeft: "5px",
@@ -178,7 +241,7 @@ export default function Signup() {
             }}
             onClick={() => navigate("/login")}
           >
-          Login
+            Login
           </button>
         </div>
       </div>

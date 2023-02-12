@@ -47,6 +47,7 @@ export default function Login() {
         .max(64, "Please enter within 64 characters "),
     }),
     onSubmit: async (values) => {
+		console.log(values)
       try {
         const userCredential = await signInWithEmailAndPassword(
           auth,

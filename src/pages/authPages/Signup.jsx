@@ -33,9 +33,9 @@ export default function Signup() {
   } = useFormik({
     initialValues: {
       fullName: "",
-      contactNumber: "",
-      email: "",
-      password: "",
+      // contactNumber: "",
+      // email: "",
+      // password: "",
     },
     validationSchema: yup.object({
       name: yup
@@ -43,25 +43,25 @@ export default function Signup() {
         .required("Name is required")
         .min(3, "Please enter more then 3 characters ")
         .max(20, "Please enter within 20 characters "),
-      email: yup
-        .string("Enter your email")
-        .email("Enter valid email")
-        .required("Email is required")
-        .min(3, "Please enter more then 3 characters ")
-        .max(32, "Please enter within 32 characters "),
-      password: yup
-        .string("Enter your Password") //.password()
-        .required("Password is required")
-        .min(6, "Please enter more then 6 characters ")
-        .max(64, "Please enter within 64 characters "),
-      contactNumber: yup
-        .number("Enter your Phone Number")
-        .required("Phone Number is required")
-    //     .min(10, "Please enter more then 10 characters ")
-    //     .max(15, "Please enter within 15 characters "),
+      // email: yup
+      //   .string("Enter your email")
+      //   .email("Enter valid email")
+      //   .required("Email is required")
+      //   .min(3, "Please enter more then 3 characters ")
+      //   .max(32, "Please enter within 32 characters "),
+      // password: yup
+      //   .string("Enter your Password") //.password()
+      //   .required("Password is required")
+      //   .min(6, "Please enter more then 6 characters ")
+      //   .max(64, "Please enter within 64 characters "),
+      // contactNumber: yup
+      //   .number("Enter your Phone Number")
+      //   .required("Phone Number is required"),
+      //     .min(10, "Please enter more then 10 characters ")
+      //     .max(15, "Please enter within 15 characters "),
     }),
     onSubmit: async (values) => {
-		console.log("values",values)
+      console.log("values", values);
       try {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
@@ -128,13 +128,14 @@ export default function Signup() {
         <form
           style={{ display: "flex", flexDirection: " column" }}
           onSubmit={handleSubmit}
+          // onSubmit={()=>console.log("shehi")}
         >
           <TextField
             sx={{
               color: "#61B846",
               //   backgroundColor: "#EFEFEF",
-            //   marginBottom: "32px",
-            //   marginTop: "52px",
+              //   marginBottom: "32px",
+              //   marginTop: "52px",
               width: { xs: "320px", md: "420px" },
             }}
             autoComplete="on"
@@ -155,8 +156,8 @@ export default function Signup() {
             sx={{
               color: "#61B846",
               //   backgroundColor: "#EFEFEF",
-            //   marginBottom: "32px",
-            //   marginTop: "52px",
+              //   marginBottom: "32px",
+              //   marginTop: "52px",
               width: { xs: "320px", md: "420px" },
             }}
             autoComplete="on"
@@ -212,7 +213,7 @@ export default function Signup() {
             helperText={touched.contactNumber && errors.contactNumber}
           />
 
-          <Button
+          <button
             type="submit"
             className="submitBtn"
             sx={{ mb: "30px", py: "15px", width: { xs: "320px", md: "420px" } }}
@@ -220,14 +221,7 @@ export default function Signup() {
             // onClick={handleSubmit}
           >
             Sign Up
-          </Button>
-          {/* <Button
-			  variant="outlined"
-			  sx={{ mb: "23px", py: "15px", width: { xs: "320px", md: "420px" } }}
-			  startIcon={<FcGoogle />}
-			>
-			  Login with Google
-			</Button> */}
+          </button>
         </form>
         <div style={{ textAlign: "center" }}>
           <span>Already have an account?</span>

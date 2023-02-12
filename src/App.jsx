@@ -8,6 +8,7 @@ import Login from "./pages/authPages/Login";
 import Signup from "./pages/authPages/Signup";
 // Store Pages
 import AllProducts from "./pages/storePages/AllProducts";
+import AddProduct from "./pages/adminPages/AddProduct";
 // import Courses from "./ ";
 // import Courses from "./ ";
 // Admin Pages
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           {/* user store pages */}
           <Route path="/products" element={<AllProducts />} />
+          <Route path="/addProducts" element={<AddProduct />} />
 
           {/* <Route path="attendance" element={<Attendance />} />
           <Route path="courses" element={<Courses />} />

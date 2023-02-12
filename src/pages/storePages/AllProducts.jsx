@@ -43,7 +43,7 @@ export default function AllProducts() {
       (item) =>
         item.productName.toLowerCase().includes(searchQuery) ||
         item.productDescription.toLowerCase().includes(searchQuery) ||
-        item.productType.toLowerCase().includes(searchQuery) ||
+        // item.productType.toLowerCase().includes(searchQuery) ||
         item.category.toLowerCase().includes(searchQuery)
     );
   };
@@ -66,6 +66,7 @@ export default function AllProducts() {
               key={i}
               name={item?.productName}
               img={item?.productImage}
+              id={item?.id}
               category={item?.category}
               productDescription={item?.productDescription}
               unitPrice={item?.unitPrice}
@@ -79,14 +80,42 @@ export default function AllProducts() {
 }
 // const navigate = useNavigate();
 // onClick={() => navigate("/employees")}
+
 const Product = (props) => {
-  const { name, img, category, productDescription, unitPrice, unitType } =
+  const { name, img, category, id, productDescription, unitPrice, unitType } =
     props;
+  const addToCart = () => {
+    let arrayOfCarts = JSON.parse(localStorage.getItem("cartList")) || [];
+    const clickedItem = arrayOfCarts?.filter((i) => i.id === id);
+    console.log(clickedItem.length);
+    if (clickedItem.length === 0) {
+      arrayOfCarts.push({
+        id,
+        name,
+        unitPrice,
+        quantity: 0,
+      });
+    } else if (clickedItem.length > 0) {
+      console.log(clickedItem, "id matched");
+      arrayOfCarts.push({
+        id,
+        name,
+        unitPrice,
+        quantity: 5,
+      });
+    }
+
+    // console.log(arrayOfCarts.id);
+
+    // if (arrayOfCarts?.id === id) {
+
+    localStorage.setItem("cartList", JSON.stringify(arrayOfCarts));
+  };
 
   return (
     <div style={{}}>
       <div style={{}}>
-        <img src={img} alt="" width={52} height={52} />
+        <img src={img} alt="" width={62} height={62} />
         <div style={{}}>
           <h3 style={{}}>{name}</h3>
           <h6 style={{}}>{productDescription}</h6>
@@ -94,7 +123,7 @@ const Product = (props) => {
       </div>
       <div>
         <p style={{}}>{`${unitPrice} - ${unitType}`}</p>
-		<button>+</button>
+        <button onClick={addToCart}>+</button>
       </div>
     </div>
   );

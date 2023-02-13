@@ -130,7 +130,7 @@ export default function Signup() {
           onSubmit={handleSubmit}
           // onSubmit={()=>console.log("shehi")}
         >
-          <TextField
+          <input
             sx={{
               color: "#61B846",
               //   backgroundColor: "#EFEFEF",
@@ -152,7 +152,7 @@ export default function Signup() {
             error={touched.fullName && Boolean(errors.fullName)}
             helperText={touched.fullName && errors.fullName}
           />
-          <TextField
+          <input
             sx={{
               color: "#61B846",
               //   backgroundColor: "#EFEFEF",
@@ -174,7 +174,7 @@ export default function Signup() {
             error={touched.email && Boolean(errors.email)}
             helperText={touched.email && errors.email}
           />
-          <TextField
+          <input
             sx={{
               backgroundColor: "transparent",
               width: { xs: "320px", md: "420px" },
@@ -193,7 +193,7 @@ export default function Signup() {
             error={touched.password && Boolean(errors.password)}
             helperText={touched.password && errors.password}
           />
-          <TextField
+          <input
             sx={{
               backgroundColor: "transparent",
               width: { xs: "320px", md: "420px" },

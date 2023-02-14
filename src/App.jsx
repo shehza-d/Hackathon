@@ -17,23 +17,23 @@ import AddProduct from "./pages/adminPages/AddProduct";
 // import Courses from "./ ";
 // import Courses from "./ ";
 
-// import { auth } from "./firebase";
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
  
 export default function App() {
 
   const [isLogin, setIsLogin] = useState(true);
 
   // const auth = getAuth();
-  // useEffect(() => {
-  //   const Unsubscribe =    onAuthStateChanged(auth, (user) => {
-  //     console.log(user);
-  //     // const uid = user.uid;
-  //     if (user) setIsLogin(true);
-  //     else setIsLogin(false);
-  //   });
-  // // return () => Unsubscribe();
-  // }, []);
+  useEffect(() => {
+    const Unsubscribe =    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+      // const uid = user.uid;
+      if (user) setIsLogin(true);
+      else setIsLogin(false);
+    });
+  // return () => Unsubscribe();
+  }, []);
 
   return (
     <div className="App">

@@ -1,10 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function Card(){
-useEffect(()=>{
-	// let arrayOfTodos = JSON.parse(localStorage.getItem("todoList")) || [];
+export default function Card() {
+  const [data, setData] = useState([]);
 
-},[])
-	return (<>
-	</>)
+  useEffect(() => {
+    const arrayOfCarts = JSON.parse(localStorage.getItem("cartList")) || [];
+    setData(arrayOfCarts);
+  }, []);
+  return (
+    <>
+      <button>Delete</button>
+	  <div>
+		{
+        //   {searchFun()?.map((item, i) => ()}
+		}
+	  </div>
+    </>
+  );
 }

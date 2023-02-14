@@ -151,7 +151,7 @@ export default function Login() {
             className="submitBtn"
             sx={{ mb: "30px", py: "15px", width: { xs: "320px", md: "420px" } }}
             variant="contained"
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>

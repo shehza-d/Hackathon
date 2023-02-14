@@ -86,8 +86,13 @@ const Product = (props) => {
     props;
   const addToCart = () => {
     let arrayOfCarts = JSON.parse(localStorage.getItem("cartList")) || [];
+
+    console.log(id);
+    console.log(arrayOfCarts.id === id);
     const clickedItem = arrayOfCarts?.filter((i) => i.id === id);
+
     console.log(clickedItem.length);
+
     if (clickedItem.length === 0) {
       arrayOfCarts.push({
         id,
@@ -101,7 +106,7 @@ const Product = (props) => {
         id,
         name,
         unitPrice,
-        quantity: 5,
+        quantity: clickedItem.quantity++,
       });
     }
 

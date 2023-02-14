@@ -1,3 +1,6 @@
 splash screen 
 setup context api
 order ka collection ak hi bane ga with userID 
+
+cookie nhi token send karty hyn 
+native per async storage safe hota hy

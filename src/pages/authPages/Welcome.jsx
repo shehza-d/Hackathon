@@ -1,7 +1,10 @@
 // Splash screen
 import storeLogo from "../../assets/storeLogo.png";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div>
@@ -10,7 +13,9 @@ export default function Welcome() {
         <h2>ONLINE DISCOUNT STORE</h2>
       </div>
 
-      <button>Get Started</button>
+      <button onClick={navigate("/login")}>
+        <Link to="login">Get Started</Link>
+      </button>
     </div>
   );
 }
